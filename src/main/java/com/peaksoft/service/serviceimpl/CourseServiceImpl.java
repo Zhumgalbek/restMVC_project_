@@ -6,8 +6,10 @@ import com.peaksoft.dto.request.CourseRequest;
 import com.peaksoft.dto.response.CourseResponse;
 import com.peaksoft.entity.Company;
 import com.peaksoft.entity.Course;
+import com.peaksoft.entity.Group;
 import com.peaksoft.repository.CompanyRepository;
 import com.peaksoft.repository.CourseRepository;
+import com.peaksoft.repository.GroupRepository;
 import com.peaksoft.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,8 @@ import java.util.List;
 public class CourseServiceImpl implements CourseService {
 
     private final CompanyRepository companyRepository;
+
+    private final GroupRepository groupRepository;
     private final CourseRepository courseRepository;
     private final CourseConvertRequest courseConvertRequest;
     private final CourseConvertResponse courseConvertResponse;
@@ -47,6 +51,7 @@ public class CourseServiceImpl implements CourseService {
         Course course = courseConvertRequest.create(courseRequest);
         company.addCourse(course);
         course.setCompany(company);
+        courseRepository.save(course);
         return courseConvertResponse.create(course);
     }
 
@@ -58,8 +63,10 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public CourseResponse deleteCourse(Long id) {
-        Course course = courseRepository.findById(id).get();
+    public CourseResponse deleteCourse(Long groupId,Long courseId) {
+        Course course = courseRepository.findById(courseId).get();
+        Group group = groupRepository.findById(groupId).get();
+        group.remove(course);
         courseRepository.delete(course);
         return courseConvertResponse.create(course);
     }

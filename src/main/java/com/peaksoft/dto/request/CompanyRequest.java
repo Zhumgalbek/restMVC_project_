@@ -9,6 +9,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CompanyRequest {
+
     private String companyName;
+
     private String locatedCountry;
+
 }

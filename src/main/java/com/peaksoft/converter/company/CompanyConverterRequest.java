@@ -16,14 +16,10 @@ public class CompanyConverterRequest {
     }
 
     public void update(Company company, CompanyRequest companyRequest) {
-        if (companyRequest.getCompanyName() == null ) {
-
-        } else {
+        if (companyRequest.getCompanyName() != null) {
             company.setCompanyName(companyRequest.getCompanyName());
         }
-        if (companyRequest.getLocatedCountry() == null ) {
-
-        } else {
+        if (companyRequest.getLocatedCountry() != null) {
             company.setLocatedCountry(companyRequest.getLocatedCountry());
         }
     }

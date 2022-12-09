@@ -7,11 +7,17 @@ import java.io.IOException;
 import java.util.List;
 
 public interface CourseService {
+
     List<CourseResponse> getAllCourse();
+
     List<CourseResponse> getAllCourse(Long companyId);
+
     CourseResponse getCourseById(Long id);
+
     CourseResponse saveCourse(Long companyId, CourseRequest course) throws IOException;
+
     CourseResponse updateCourse(Long id, CourseRequest course);
-    CourseResponse deleteCourse(Long id);
+
+    CourseResponse deleteCourse(Long groupId,Long courseId);
 
 }

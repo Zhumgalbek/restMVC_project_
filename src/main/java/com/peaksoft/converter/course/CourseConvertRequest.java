@@ -16,8 +16,14 @@ public class CourseConvertRequest {
     }
 
     public void update(Course course, CourseRequest courseRequest) {
-        course.setCourseName(courseRequest.getCourseName());
-        course.setDuration(courseRequest.getDuration());
-        course.setDescription(courseRequest.getDescription());
+        if (courseRequest.getCourseName() != null) {
+            course.setCourseName(courseRequest.getCourseName());
+        }
+        if (courseRequest.getDuration() != null) {
+            course.setDuration(courseRequest.getDuration());
+        }
+        if (courseRequest.getDescription() != null) {
+            course.setDescription(courseRequest.getDescription());
+        }
     }
 }
